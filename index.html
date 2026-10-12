@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Abdul Jalil Moad - Quant Portfolio</title>
+  
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Load React and Recharts -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/recharts/umd/Recharts.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body {
+      background-color: #0f172a;
+      color: #f1f5f9;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = window.Recharts;
+    
+    const mockBacktestData = [
+      { month: 'Jan', strategy: 100, benchmark: 100 },
+      { month: 'Feb', strategy: 105, benchmark: 102 },
+      { month: 'Mar', strategy: 103, benchmark: 101 },
+      { month: 'Apr', strategy: 112, benchmark: 104 },
+      { month: 'May', strategy: 118, benchmark: 105 },
+      { month: 'Jun', strategy: 115, benchmark: 103 },
+      { month: 'Jul', strategy: 125, benchmark: 106 },
+      { month: 'Aug', strategy: 132, benchmark: 108 },
+      { month: 'Sep', strategy: 128, benchmark: 105 },
+      { month: 'Oct', strategy: 140, benchmark: 109 },
+      { month: 'Nov', strategy: 145, benchmark: 111 },
+      { month: 'Dec', strategy: 152, benchmark: 114 },
+    ];
+
+    function Portfolio() {
+      return (
+        <div className="min-h-screen p-8">
+          <header className="max-w-6xl mx-auto mb-12 border-b border-slate-700 pb-8 flex justify-between items-end">
+            <div>
+              <h1 className="text-4xl font-bold text-blue-400 mb-2">Abdul Jalil Moad</h1>
+              <p className="text-xl text-slate-400">Quantitative Researcher | Applied Mathematics & Computer Science</p>
+            </div>
+            <div className="flex gap-4">
+              <a href="resume.pdf" className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm font-semibold transition-colors">
+                Download Resume
+              </a>
+              <a href="https://github.com/street-volume" className="bg-slate-800 hover:bg-slate-700 px-4 py-2 rounded text-sm font-semibold transition-colors border border-slate-600">
+                GitHub
+              </a>
+            </div>
+          </header>
+
+          <main className="max-w-6xl mx-auto space-y-8">
+            <section className="bg-slate-800 p-6 rounded-lg border border-slate-700 shadow-xl">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-green-400">
+                  Coffee Commodity Futures Backtest
+                </h2>
+                <div className="flex gap-4 text-sm">
+                  <span className="bg-slate-900 px-3 py-1 rounded border border-slate-600">Sharpe: 1.84</span>
+                  <span className="bg-slate-900 px-3 py-1 rounded border border-slate-600">Max DD: -8.2%</span>
+                </div>
+              </div>
+              
+              <div className="h-72 w-full">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={mockBacktestData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                    <XAxis dataKey="month" stroke="#94a3b8" />
+                    <YAxis stroke="#94a3b8" domain={['dataMin - 10', 'dataMax + 10']} />
+                    <Tooltip 
+                      contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #334155' }}
+                      itemStyle={{ color: '#f1f5f9' }}
+                    />
+                    <Line type="monotone" dataKey="strategy" name="Strategy Equity" stroke="#3b82f6" strokeWidth={2} dot={false} />
+                    <Line type="monotone" dataKey="benchmark" name="Benchmark" stroke="#64748b" strokeWidth={2} dot={false} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="mt-4 text-slate-400 text-sm leading-relaxed">
+                Developed a quantitative trading strategy focused on coffee commodity futures as part of the Alternative Investment travel team. Model incorporates time-series analysis and momentum indicators, simulated against historical contract data.
+              </p>
+            </section>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                <h3 className="text-xl font-bold mb-2">Garment Manufacturing Productivity</h3>
+                <p className="text-sm text-blue-300 mb-3">Python, R, Logistic Regression</p>
+                <p className="text-slate-400 text-sm leading-relaxed">1st Place USCLAP Winner. Utilized logistic regression with AIC-based stepwise selection, ROC/AUC, and mediation analysis to predict productivity. Achieved 77.1% classification accuracy.</p>
+              </div>
+
+              <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                <h3 className="text-xl font-bold mb-2">Startup KPI & Operations Dashboards</h3>
+                <p className="text-sm text-blue-300 mb-3">Python, ETL, Data Visualization</p>
+                <p className="text-slate-400 text-sm leading-relaxed">Programmed virtual dashboards tracking key performance indicators for last-mile logistics and eCommerce. Processed complex datasets to optimize platform merchant fit via regression analysis.</p>
+              </div>
+
+              <div className="bg-slate-800 p-6 rounded-lg border border-slate-700 hover:border-blue-500 transition-colors">
+                <h3 className="text-xl font-bold mb-2">Stochastic Modeling & Applied Math</h3>
+                <p className="text-sm text-blue-300 mb-3">MATLAB, Monte Carlo Simulations</p>
+                <p className="text-slate-400 text-sm leading-relaxed">Graduate coursework utilizing Maximum Likelihood Estimators, stochastic processes, and mathematical modeling. Derived moment-generating functions to construct statistical proofs.</p>
+              </div>
+            </div>
+          </main>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Portfolio />);
+  </script>
+</body>
+</html>
