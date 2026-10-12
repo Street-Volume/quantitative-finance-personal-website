@@ -12,7 +12,7 @@ Live site: **not deployed yet** — see §2.
 **Stack:** a single `index.html`. React 18, ReactDOM, Recharts, and Babel standalone are all loaded from `unpkg.com` via `<script>` tags; Tailwind CSS is loaded from its play-CDN. JSX is written inline in a `<script type="text/babel">` block and compiled in-browser by Babel — **no build step, no npm, no node** (this machine typically has none of them anyway; confirm with `command -v node npm` before assuming otherwise).
 
 **State:** minimal. Two commits before this session (`7cd3b57` initial, `decfa43` added the missing `index.html`). Everything in index.html is currently **placeholder/mock**:
-- The "Download Resume" button links to `resume.pdf`, which **does not exist in the repo** — clicking it 404s.
+- There was a "Download Resume" button linking to `resume.pdf`, which didn't exist — Jalil doesn't have a resume ready yet, so the button was removed (not just left dead). Add it back once he has a file.
 - The featured project's chart uses **hand-written mock data**, not a real backtest result.
 - There's no contact section (email, LinkedIn, etc.) beyond the GitHub link.
 
@@ -55,7 +55,7 @@ The working tree should essentially never have uncommitted changes between sessi
 ## 5. Known gaps (as of this writing)
 
 - **GitHub Pages isn't on yet** — see §2. Nothing to click through until it is.
-- **`resume.pdf` is a dead link.** Either get an actual resume file from Jalil to add to the repo, or change/remove the button until there is one.
+- **No resume button right now** (removed, see §1) — add it back once Jalil has a PDF ready.
 - **The backtest chart is mock data.** Ask Jalil whether he has real backtest output to swap in, or whether the mock data should stay labeled as illustrative.
 - **No contact/links section** beyond the one GitHub link in the header (no email, no LinkedIn).
 - **No automated verification of any kind** — no CI, no link checker, nothing. For a single-file site this is low-risk, but if it grows past one page, consider the same static link/anchor-check approach used in `inference-atlas`.
