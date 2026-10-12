@@ -56,7 +56,7 @@ The working tree should essentially never have uncommitted changes between sessi
 
 - **GitHub Pages isn't on yet** — see §2. Nothing to click through until it is.
 - **No resume button right now** (removed, see §1) — add it back once Jalil has a PDF ready.
-- **The backtest chart is mock data.** Ask Jalil whether he has real backtest output to swap in, or whether the mock data should stay labeled as illustrative.
+- **The backtest chart is mock data, now clearly labeled as such** (an amber "Illustrative sample data — not live or verified results" caption above the chart). Jalil confirmed he doesn't have real backtest output to swap in right now; if he gets some later, replace `mockBacktestData` and remove the label.
 - **No contact/links section** beyond the one GitHub link in the header (no email, no LinkedIn).
 - **No automated verification of any kind** — no CI, no link checker, nothing. For a single-file site this is low-risk, but if it grows past one page, consider the same static link/anchor-check approach used in `inference-atlas`.
 
