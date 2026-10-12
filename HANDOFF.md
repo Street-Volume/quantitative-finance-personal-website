@@ -3,7 +3,7 @@
 Read this before touching anything. The owner, Jalil, is **not a programmer** — he relies entirely on whichever agent is driving this repo to explain things in plain language, to never lose his work, and to keep the live site working. Optimize for reliability over cleverness.
 
 Repo: **https://github.com/Street-Volume/quantitative-finance-personal-website**
-Live site: **not deployed yet** — see §2.
+Live site: **https://street-volume.github.io/quantitative-finance-personal-website/** (GitHub Pages turned on this session — see §2)
 
 ## 1. Project summary
 
@@ -11,23 +11,18 @@ Live site: **not deployed yet** — see §2.
 
 **Stack:** a single `index.html`. React 18, ReactDOM, Recharts, and Babel standalone are all loaded from `unpkg.com` via `<script>` tags; Tailwind CSS is loaded from its play-CDN. JSX is written inline in a `<script type="text/babel">` block and compiled in-browser by Babel — **no build step, no npm, no node** (this machine typically has none of them anyway; confirm with `command -v node npm` before assuming otherwise).
 
-**State:** minimal. Two commits before this session (`7cd3b57` initial, `decfa43` added the missing `index.html`). Everything in index.html is currently **placeholder/mock**:
-- There was a "Download Resume" button linking to `resume.pdf`, which didn't exist — Jalil doesn't have a resume ready yet, so the button was removed (not just left dead). Add it back once he has a file.
-- The featured project's chart uses **hand-written mock data**, not a real backtest result.
-- There's no contact section (email, LinkedIn, etc.) beyond the GitHub link.
+**State:** small but no longer untouched. Two commits existed before this session (`7cd3b57` initial, `decfa43` added the missing `index.html`); this session added `HANDOFF.md` + the autosave hook, turned on GitHub Pages, removed the dead resume button, and labeled the backtest chart as illustrative (see §5 for exactly what's still open, and `git log` for the full commit history). Remaining in index.html:
+- The featured project's chart uses **hand-written mock data**, now clearly labeled "Illustrative sample data — not live or verified results" rather than presented as real.
+- There's no contact section (email, LinkedIn, etc.) beyond the GitHub link &mdash; asked, not yet answered.
+- The other three project cards (garment-manufacturing model, startup KPI dashboards, stochastic modeling coursework) haven't been reviewed for accuracy/updates &mdash; not yet asked about.
 
 This is a much smaller, less actively developed project than Jalil's other repo, `Street-Volume/inference-atlas` (an interactive study-guide site — don't confuse the two if he says "my site" ambiguously; ask which one).
 
-## 2. Deployment — NOT yet live
+## 2. GitHub Pages deployment — live as of this session
 
-Unlike `inference-atlas`, **GitHub Pages has not been turned on for this repo.** `https://street-volume.github.io/quantitative-finance-personal-website/` currently 404s. Turning it on is a **one-time manual step in the GitHub web UI** that no git push can do:
+Pages was off when this repo was first found this session (`https://street-volume.github.io/quantitative-finance-personal-website/` 404'd); Jalil turned it on by hand (Settings → Pages → Deploy from a branch → `main` / `/ (root)` → Save) and it's confirmed live now. If you ever find it 404ing again (e.g. after he recreated the repo, or changed the branch), that's the one-time manual step to redo &mdash; no `git push` turns Pages on by itself.
 
-1. On github.com, open this repo → **Settings** → **Pages** (left sidebar).
-2. Under "Build and deployment," **Source: Deploy from a branch**.
-3. **Branch: `main`**, folder **`/ (root)`** → Save.
-4. Wait ~30–60 seconds, then the site is live at the URL above.
-
-Walk Jalil through this directly (he's a GitHub beginner) rather than assuming he's done it. Once it's on, deployment for every future change is just:
+Deployment for every change from here is just:
 
 ```bash
 git add -A
@@ -41,7 +36,7 @@ with the same "allow 30–90 seconds, then `curl` the live URL" caution as `infe
 
 ## 3. Git identity and push auth on this VM
 
-Set up this session (commit `<pending>`):
+Set up this session (commit `edae715`):
 - **Local git identity** (this repo only): `user.name "Jalil"`, `user.email "jalilmoad@gmail.com"`.
 - **Push auth**: a GitHub Personal Access Token, via `git config --local credential.helper store` reading `~/.git-credentials` (`https://<token>:x-oauth-basic@github.com`) — the same credential file `inference-atlas` uses, since both repos belong to the same GitHub account. If that file is missing (fresh VM), walk Jalil through generating a new classic PAT with the `repo` scope at github.com/settings/tokens, same as documented in `inference-atlas`'s own HANDOFF.md §3.
 - **This is a VM that may be wiped without warning.** Everything must live in git, pushed, not just on disk.
@@ -52,12 +47,18 @@ Set up this session (commit `<pending>`):
 
 The working tree should essentially never have uncommitted changes between sessions. If you find uncommitted changes, investigate rather than discarding them.
 
-## 5. Known gaps (as of this writing)
+## 5. Status (as of this writing)
 
-- **GitHub Pages isn't on yet** — see §2. Nothing to click through until it is.
-- **No resume button right now** (removed, see §1) — add it back once Jalil has a PDF ready.
-- **The backtest chart is mock data, now clearly labeled as such** (an amber "Illustrative sample data — not live or verified results" caption above the chart). Jalil confirmed he doesn't have real backtest output to swap in right now; if he gets some later, replace `mockBacktestData` and remove the label.
-- **No contact/links section** beyond the one GitHub link in the header (no email, no LinkedIn).
-- **No automated verification of any kind** — no CI, no link checker, nothing. For a single-file site this is low-risk, but if it grows past one page, consider the same static link/anchor-check approach used in `inference-atlas`.
+**Resolved this session:**
+- GitHub Pages is live (§2).
+- Resume button removed rather than left dead (Jalil confirmed no resume file ready) — add it back once he has one.
+- Backtest chart labeled "Illustrative sample data — not live or verified results" rather than presented as real (Jalil confirmed he has no real backtest output to swap in).
+
+**Still open, asked but not yet answered:**
+- Whether to add a contact section (email/LinkedIn) beyond the one GitHub link in the header.
+- Whether the other three project cards (garment-manufacturing, startup KPI dashboards, stochastic modeling) need any content updates.
+
+**Not yet asked / lower priority:**
+- No automated verification of any kind — no CI, no link checker. Low-risk for a single-file site; if it grows past one page, consider the same static link/anchor-check approach used in `inference-atlas`.
 
 If you're picking this up fresh after a VM wipe: `git clone https://github.com/Street-Volume/quantitative-finance-personal-website.git`, then redo §3 (git identity + push auth) before anything will commit or push.
